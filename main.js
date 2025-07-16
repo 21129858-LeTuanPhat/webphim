@@ -1,6 +1,11 @@
 var api =` https://phimapi.com/danh-sach/phim-moi-cap-nhat?`
 const paginationElement = document.querySelector('#phantrang')
 const contentPhim = document.querySelector('#contentPhim')
+const searchElement = document.querySelector('input[type="text"]')
+const searchbutton = document.querySelector('#btnsearch')
+const formsb = document.querySelector('#formsb')
+console.log(searchElement)
+console.log(searchbutton)
 function callAPI(api){
     fetch(api)
         .then(function(respone){
@@ -8,6 +13,7 @@ function callAPI(api){
         })
         .then(function(results){
            render(results.pagination,results.items)
+           search()
         })
 }
 function render(pagination,items){
@@ -62,10 +68,15 @@ function tranfor(slug){
      window.location.href = `contentmain.html?slug=${encodeURIComponent(slug)}`;
 }
 
+function search(){
+    searchbutton.onclick = function(e){
+    var content = searchElement.value.trim()
+    if(content===''){
+      e.preventDefault()
+    }else {
+      window.location.href=`search.html?keyword=${encodeURIComponent(content)}`
+    }
+}
+}
 
-
-
-
-
-
-callAPI(api)
+ callAPI(api); 

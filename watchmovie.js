@@ -22,7 +22,7 @@ function render(result){
       result.episodes.forEach(function(episode){
         if(episode.server_name.includes('(Vietsub)')){
                 episode.server_data.forEach(function(data){
-                listVietSub+=`<button class="btn btn-outline-secondary ${data.slug ===tapphim?'active':''}">${data.name}</button>`
+                listVietSub+=`<button onclick="see('${result.movie.slug}', '${data.slug}')" class="btn btn-outline-secondary ${data.slug ===tapphim?'active':''}">${data.name}</button>`
                 danhsachTapPhim[data.slug] =data.link_m3u8
         })
         }
@@ -86,4 +86,8 @@ function listPhimCungTheLoai(arrTheLoai){
 
      function tranfor(slug){
      window.location.href = `contentmain.html?slug=${encodeURIComponent(slug)}`;
+}
+
+function see(slug,tapPhim){
+    window.location.href = `watchmovie.html?slug=${encodeURIComponent(slug)}&tapphim=${encodeURIComponent(tapPhim)}`;
 }

@@ -46,7 +46,7 @@ function render(result){
       result.episodes.forEach(function(episode){
         if(episode.server_name.includes('(Vietsub)')){
                 episode.server_data.forEach(function(data){
-                listVietSub+=`<button class="btn btn-outline-secondary">${data.name}</button>`
+                listVietSub+=`<button onclick="see('${result.movie.slug}', '${data.slug}')" class="btn btn-outline-secondary">${data.name}</button>`
         })
         }
        
