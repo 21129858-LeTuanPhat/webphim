@@ -1,14 +1,12 @@
 const params = new URLSearchParams(window.location.search);
-const keyword = params.get('keyword');
-console.log(keyword)
+const theloai = params.get('theloai');
 var $ = document.querySelector.bind(document)
 const bodyElement = $('#content')
 const paginationElement =$('#phantrang')
 const title2 =$('#title2')
-
-var api = `https://phimapi.com/v1/api/tim-kiem?keyword=${keyword}`
-function callAPI(api){
-        fetch(api)
+var api =`https://phimapi.com/v1/api/the-loai/${theloai}`
+function callapi(api){
+    fetch(api)
         .then(function(respone){
             return respone.json()
         })
@@ -16,7 +14,6 @@ function callAPI(api){
             render(results)
         })
 }
-
 
 function render(results){
     var pagination = results.data.params.pagination
@@ -88,15 +85,16 @@ function render(results){
         `
     })
     bodyElement.innerHTML=contents
-
-
 }
 
+
 function changePage(newPage){
-      var api =`https://phimapi.com/v1/api/tim-kiem?keyword=${keyword}&page=${newPage}`
-      callAPI(api)
+      var api =`https://phimapi.com/v1/api/the-loai/${theloai}?page=${newPage}`
+      callapi(api)
     }
 function tranfor(slug){
      window.location.href = `contentmain.html?slug=${encodeURIComponent(slug)}`;
 }
-callAPI(api)
+
+
+callapi(api)

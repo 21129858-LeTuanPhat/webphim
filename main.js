@@ -1,5 +1,5 @@
 var api =` https://phimapi.com/danh-sach/phim-moi-cap-nhat?`
-const paginationElement = document.querySelector('#phantrang')
+const paginationElement = document.querySelectorAll('.phantrang')
 const contentPhim = document.querySelector('#contentPhim')
 const searchElement = document.querySelector('input[type="text"]')
 const searchbutton = document.querySelector('#btnsearch')
@@ -28,8 +28,15 @@ function render(pagination,items){
         </a>
       </li>`
     }
-    startPage = currentPage
-    endPage =Math.min(totalPages,currentPage+4)
+    const maxButtons =5;
+    startPage = Math.max(1, currentPage - 2);
+    endPage = Math.min(totalPages, currentPage + 2);
+
+    if (currentPage <= 2) {
+        endPage = Math.min(totalPages, 5);
+      } else if (currentPage >= totalPages - 1) {
+        startPage = Math.max(1, totalPages - 4);
+      }
 
     for(var i =startPage ; i<= endPage;i++){
         htmls+=`<li onclick="changePage(${i})" class="page-item ${i === currentPage?'active':''}"><a class="page-link" >${i}</a></li>`
@@ -41,7 +48,10 @@ function render(pagination,items){
         </a>
       </li>`
     }
-    paginationElement.innerHTML =htmls
+    var paginations = Array.from(paginationElement);
+    for(var pagination of paginations){
+      pagination.innerHTML=htmls
+    }
     
     //Render phần nội dung phim
     content=''
