@@ -4,7 +4,8 @@ const contentPhim = document.querySelector('#contentPhim')
 const searchElement = document.querySelector('input[type="text"]')
 const searchbutton = document.querySelector('#btnsearch')
 const formsb = document.querySelector('#formsb')
-console.log(searchElement)
+const input_search =document.querySelector('.input_search')
+console.log(input_search )
 console.log(searchbutton)
 function callAPI(api){
     fetch(api)
@@ -14,6 +15,7 @@ function callAPI(api){
         .then(function(results){
            render(results.pagination,results.items)
            search()
+           search1()
         })
 }
 function render(pagination,items){
@@ -58,7 +60,7 @@ function render(pagination,items){
     items.forEach(function(item){
         content+=`<div onclick="tranfor('${item.slug}')" class="col">
         <div class="card h-100">
-          <img src="${item.poster_url}" class="card-img-top img-fit" alt="Phim 1">
+          <img src="${item.poster_url}"  class="card-img-top img-fit" alt="Phim 1">
           <div class="card-body">
             <h5 class="card-title">${item.name}</h5>
             <p class="card-text">${item.tmdb.season !==null?'season'+item.tmdb.season :''}</p>
@@ -88,5 +90,30 @@ function search(){
     }
 }
 }
+
+// function search1(){
+//     searchbutton.onkeyup = function(e){
+//     var content = searchElement.value.trim()
+//     if(content===''){
+//       e.preventDefault()
+//     }
+    
+// }
+// }
+function search1(){
+    input_search.onkeyup = function(e){
+      var content = searchElement.value.trim()
+      if(content ===''){
+         return;
+      }
+    if(e.which === 13){
+      window.location.href=`search.html?keyword=${encodeURIComponent(content)}`
+    }
+}
+}
+
+
+
+
 
  callAPI(api); 

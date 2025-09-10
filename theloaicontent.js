@@ -61,12 +61,12 @@ function render(results){
     contents=''
     phims.forEach(function(phim){
         contents+=`
-            <tr>
-      <td onclick="tranfor('${phim.slug}')" class="col-5">
+            <tr onclick="tranfor('${phim.slug}')">
+      <td  class="col-5">
         <div class="card " style="max-width: 500px">
   <div class="row">
     <div class="col-md-2">
-      <img src="https://phimimg.com/${phim.poster_url}" class="img-fluid rounded-start" alt="...">
+      <img src="https://phimimg.com/${phim.poster_url}" class="img-fluid rounded-start" alt="..." loading="lazy">
     </div>
     <div class="col-md-6">
       <div class="card-body">

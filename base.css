@@ -10,3 +10,22 @@
     max-height: 50vh;
     overflow-y: auto;
   }
+  .btn-love {
+    border: 2px solid black;   /* Viền đỏ */            /* Icon và chữ màu đỏ */
+    background-color: white; /* Nền trắng */
+    width: 100px;
+  }
+  .btn-love:hover{
+    border: 2px solid red;
+    color: red;
+  }
+  .active1{
+    border: 2px solid red;
+    color: red;
+  }
+video::-webkit-media-controls-current-time-display {
+  color: yellow; /* đổi màu chữ thời gian */
+}
+  .phantrang{
+    cursor: pointer;
+  }

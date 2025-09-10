@@ -37,6 +37,9 @@ function render(result){
         }
         </p>
         <p><strong>Mô tả:</strong> ${result.movie.content}</p>
+        <button onclick="clickLove(event)" type="button" class="btn btn-love" >
+        <i class="bi bi-heart-fill btn-love-icon"></i>
+        </button>
       </div>
       `
       mainContent.innerHTML =htmls
@@ -93,4 +96,10 @@ function render(result){
 
 function see(slug,tapPhim){
     window.location.href = `watchmovie.html?slug=${encodeURIComponent(slug)}&tapphim=${encodeURIComponent(tapPhim)}`;
+}
+
+function clickLove(event){
+    const btn =event.target.closest('.btn-love')
+    if(!btn) return;
+    btn.classList.toggle('active1')
 }
